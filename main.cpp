@@ -5,16 +5,23 @@
 #include<typeinfo>
 #include<fstream>
 
-std::ofstream config;
+std::fstream config;
 
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::clog;
+using std::cerr;
 
 bool hasRun(false);
 
+string str;
+
     void runOnlyOnce()
         {
-        config.open("config.txt");
+        config.open("config.txt",std::ios::out);
         std::string locationDesktopFile;
 
         cout << "Hi, where is the location of .desktop files?";
@@ -34,9 +41,19 @@ bool hasRun(false);
 
     int main()
     {   
-        runOnlyOnce();
+        if (hasRun == false)
+            {
+                runOnlyOnce();
+            }
+        config.open("config.txt",std::ios::in);
         hasRun = true;
-        cout << 
+        
+		config >> str;
+			
+    
+        
+        cout << str;    
+
 
         return 0;    
     }

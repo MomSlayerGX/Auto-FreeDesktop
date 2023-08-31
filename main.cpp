@@ -18,19 +18,36 @@ using std::cerr;
 bool hasRun(false);
 
 string str;
+string path;
+int limitWhileLoop{0};
 
+    void checkIsPresent()
+    {
+        config.open("config.txt", std::ios::in);
+        if(config.is_open())
+        {
+            while(limitWhileLoop <= 3)
+            {   config << path;
+                limitWhileLoop =+ 1;
+            }
+        if(path *"desktop=")
+        }
+    }
     void runOnlyOnce()
         {
-        config.open("config.txt",std::ios::out);
+        config.open("config.txt",std::ios::app);
         std::string locationDesktopFile;
-
-        cout << "Hi, where is the location of .desktop files?";
-        std::getline(std::cin,locationDesktopFile); 
-        config << "location=" << locationDesktopFile;
-        if(!config)
+        if(config.is_open())
             {
-                clog << "Oh no, something went wrong!";
-                cerr << "Error: File not found.";
+            cout << "Hi, where is the location of .desktop files?";
+            std::getline(std::cin,locationDesktopFile); 
+            config << "location=" << locationDesktopFile << endl;
+            }
+
+        else
+            {
+            clog << "Oh no, something went wrong!";
+            cerr << "Error: File not found.";
             }
         config.close();
 
